@@ -35,9 +35,9 @@ export default function Category({navigation, route}) {
   }, []);
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.textContainer}>
-        <Text style={styles.TitleStyle}>{data}</Text>
-      </View>
+      
+        <Text style={styles.TitleStyle}>Recipes for {data}</Text>
+      
       <FlatList
         // style={styles.cardStyle}
         columnWrapperStyle={{justifyContent: 'space-between'}}
@@ -73,8 +73,10 @@ const styles = StyleSheet.create({
   },
   TitleStyle: {
     alignSelf: 'center',
-    fontWeight: '700',
-    fontSize: 35,
+    fontWeight: '600',
+    fontSize: 30,
+    color: 'white',
+    marginVertical: 20
   },
   cardStyle: {
     width: '48%',
@@ -97,11 +99,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 10,
   },
-  textContainer: {
-    width: '100%',
-    height: 50,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    marginBottom: 10,
-  },
+ 
 });

@@ -7,6 +7,7 @@ import {
   FlatList,
   Image,
   Pressable,
+  ImageBackground,
   
 } from 'react-native';
 import axios from 'axios';
@@ -69,7 +70,12 @@ export default function Home({navigation}) {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
+    <ImageBackground 
+      blurRadius={10}
+      style={styles.img}
+      source={require('../images/background.jpg')} 
+    >
       <Text style={styles.title}>Welcome</Text>
 
       <View style={styles.hButton}>
@@ -101,8 +107,8 @@ export default function Home({navigation}) {
                 datas: item.strCategory,
                })}>
                   <LinearGradient
-                    colors={['#f8a902', '#f3696e']}
-                    start={{x: 0.5, y: 0}}
+                    colors={['#28313B', '#485461']}
+                    start={{x: 0.0, y: 0}}
                     style={styles.cardStyle}>
                     <LinearGradient
                       colors={['#ef745c', '#F8FFAE']}
@@ -159,7 +165,8 @@ export default function Home({navigation}) {
             );
           }}></FlatList>
       </View>
-    </SafeAreaView>
+      </ImageBackground>
+    </View>
   );
 }
 const styles = StyleSheet.create({
@@ -168,6 +175,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#1C1C1C',
     // paddingHorizontal: '5%',
     paddingTop: '15%',
+    
   },
   title: {
     alignSelf: 'center',
@@ -201,9 +209,9 @@ const styles = StyleSheet.create({
     marginTop: 30,
     borderRadius: 20,
     marginHorizontal: 10,
-    paddingVertical: 10,
+    paddingVertical: 20,
     paddingHorizontal: 10,
-    borderWidth: 2,
+    borderWidth: 0,
     borderColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
@@ -244,7 +252,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '30%',
     borderRadius: 10,
-    marginBottom: 30,
+    marginBottom: 60,
     paddingBottom: 30,
   },
   InnerPara: {
@@ -263,4 +271,5 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 3,
   },
+ 
 });
