@@ -6,11 +6,13 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
+  Pressable,
   
 } from 'react-native';
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
+import Category from './category';
 
 
 export default function Home({navigation}) {
@@ -67,7 +69,7 @@ export default function Home({navigation}) {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Welcome</Text>
 
       <View style={styles.hButton}>
@@ -95,7 +97,9 @@ export default function Home({navigation}) {
             key={item => item.idCategory}
             renderItem={({item}) => {
               return (
-               
+               <TouchableOpacity onPress={()=>navigation.navigate('Category',{
+                datas: item.strCategory,
+               })}>
                   <LinearGradient
                     colors={['#f8a902', '#f3696e']}
                     start={{x: 0.5, y: 0}}
@@ -113,7 +117,7 @@ export default function Home({navigation}) {
                       {item.strCategoryDescription.slice(0, 50)}...
                     </Text>
                   </LinearGradient>
-               
+                  </TouchableOpacity>
               );
             }}></FlatList>
         </View>
@@ -143,21 +147,19 @@ export default function Home({navigation}) {
           // key={item => item.idCategory}
           renderItem={({item}) => {
             return (
+              <Pressable>
               <LinearGradient
-                colors={['#ef745c', '#ad336d']}
-                start={{x: 0.5, y: 0}}
+                colors={['#ef745c', '#f8a902']}
+                start={{x: 0.8, y: 0}}
                 style={[styles.cardStyle, styles.shadowProp]}>
-                <View style={styles.circle}>
-                  {/* <Image
-                      style={styles.imageStyle}
-                      source={{uri: item.strCategoryThumb}}></Image> */}
-                </View>
+                
                 <Text style={styles.Innertext}>{item.strArea}</Text>
               </LinearGradient>
+              </Pressable>
             );
           }}></FlatList>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 const styles = StyleSheet.create({
@@ -201,8 +203,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     paddingVertical: 10,
     paddingHorizontal: 10,
-    borderWidth: 0.5,
-    borderColor: 'black'
+    borderWidth: 2,
+    borderColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    
   },
   circle: {
     width: 120,
