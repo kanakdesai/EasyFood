@@ -153,7 +153,7 @@ export default function Home({navigation}) {
           // key={item => item.idCategory}
           renderItem={({item}) => {
             return (
-              <Pressable>
+              <Pressable onPress={()=>navigation.navigate("Countries", {value: item.strArea})}>
               <LinearGradient
                 colors={['#ef745c', '#f8a902']}
                 start={{x: 0.8, y: 0}}

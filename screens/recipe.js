@@ -2,11 +2,11 @@ import { View, Text, StyleSheet, FlatList, Image, ImageBackground } from 'react-
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import LinearGradient from 'react-native-linear-gradient';
-
+import Loading from './Loading';
 export default function Recipe({navigation, route}) {
     const id = route.params.id
     const [recipe, setRecipe] = useState([])
-
+    const [loading, setLoading] = useState(true)
     const getRecipe=async()=>{
         await axios({
             url: 'https://www.themealdb.com/api/json/v1/1/lookup.php?i='+id,
@@ -14,6 +14,7 @@ export default function Recipe({navigation, route}) {
         }).then(res=>{
             console.log(res.data.meals)
             setRecipe(res.data.meals)
+            setLoading(false)
         }).catch(err=>{
             console.log(err)
         })
@@ -26,6 +27,7 @@ export default function Recipe({navigation, route}) {
     <View
            
      style={styles.container}>
+     {loading?<Loading></Loading>:
      <ImageBackground 
         blurRadius={6}
         source={require('../images/background.jpg')} 
@@ -56,7 +58,7 @@ export default function Recipe({navigation, route}) {
 
       </FlatList>
 
-      </ImageBackground>
+      </ImageBackground>}
     </View>
   )
 }

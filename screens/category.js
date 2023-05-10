@@ -6,7 +6,8 @@ import {
   FlatList,
   ScrollView,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  ImageBackground
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
@@ -34,8 +35,11 @@ export default function Category({navigation, route}) {
     getData();
   }, []);
   return (
-    <SafeAreaView style={styles.container}>
-      
+    <View style={styles.container}>
+      <ImageBackground
+          blurRadius={6}
+          source={require('../images/background.jpg')} 
+      >
         <Text style={styles.TitleStyle}>Recipes for {data}</Text>
       
       <FlatList
@@ -61,7 +65,8 @@ export default function Category({navigation, route}) {
             
           );
         }}></FlatList>
-    </SafeAreaView>
+        </ImageBackground>
+    </View>
   );
 }
 const styles = StyleSheet.create({
@@ -76,7 +81,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     fontSize: 30,
     color: 'white',
-    marginVertical: 20
+    marginTop: 50,
+    marginBottom: 20
   },
   cardStyle: {
     width: '48%',
